@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.3 Matrix multiplication operator | A Selection of R Programming Topics</title>
+  <meta name="description" content="This book is a collection of selected topics on writing R code." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.3 Matrix multiplication operator | A Selection of R Programming Topics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book is a collection of selected topics on writing R code." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.3 Matrix multiplication operator | A Selection of R Programming Topics" />
+  
+  <meta name="twitter:description" content="This book is a collection of selected topics on writing R code." />
+  
+
+<meta name="author" content="Mark Banghart" />
+
+
+<meta name="date" content="2019-11-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="4-2-element-wise-operations.html"/>
+<link rel="next" href="4-4-matrix-inversion.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./preface.html">Selected R Programming Topics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-data-objects.html"><a href="1-data-objects.html"><i class="fa fa-check"></i><b>1</b> Data objects</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html"><i class="fa fa-check"></i><b>1.1</b> Base type data objects</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#integers-real-numbers-character-strings-and-logical"><i class="fa fa-check"></i><b>1.1.1</b> Integers, real numbers, character strings, and logical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#lists"><i class="fa fa-check"></i><b>1.1.2</b> Lists</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#properties-and-attributes"><i class="fa fa-check"></i><b>1.1.3</b> Properties and attributes</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#summary-tl-dr"><i class="fa fa-check"></i><b>1.1.4</b> Summary (TL; DR)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html"><i class="fa fa-check"></i><b>1.2</b> Object classes</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#factors"><i class="fa fa-check"></i><b>1.2.1</b> Factors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#data.frames"><i class="fa fa-check"></i><b>1.2.2</b> data.frames</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#matrices"><i class="fa fa-check"></i><b>1.2.3</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#summary-tl-dr-1"><i class="fa fa-check"></i><b>1.2.4</b> Summary (TL; DR)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-functions.html"><a href="2-functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a></li>
+<li class="chapter" data-level="3" data-path="3-parallel-data-processing.html"><a href="3-parallel-data-processing.html"><i class="fa fa-check"></i><b>3</b> Parallel data processing</a></li>
+<li class="chapter" data-level="4" data-path="4-matrices-1.html"><a href="4-matrices-1.html"><i class="fa fa-check"></i><b>4</b> Matrices</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-scalar-operations.html"><a href="4-1-scalar-operations.html"><i class="fa fa-check"></i><b>4.1</b> Scalar operations</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-element-wise-operations.html"><a href="4-2-element-wise-operations.html"><i class="fa fa-check"></i><b>4.2</b> Element-wise operations</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html"><i class="fa fa-check"></i><b>4.3</b> Matrix multiplication operator</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html#dot-product"><i class="fa fa-check"></i><b>4.3.1</b> dot product</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html#matrix-multiplication"><i class="fa fa-check"></i><b>4.3.2</b> Matrix multiplication</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html#outer-product"><i class="fa fa-check"></i><b>4.3.3</b> Outer product</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-matrix-inversion.html"><a href="4-4-matrix-inversion.html"><i class="fa fa-check"></i><b>4.4</b> Matrix inversion</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html"><i class="fa fa-check"></i><b>4.5</b> Other Matrix operations</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html#the-diag-function"><i class="fa fa-check"></i><b>4.5.1</b> The <code>diag()</code> function</a></li>
+<li class="chapter" data-level="4.5.2" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html#the-eigen-function"><i class="fa fa-check"></i><b>4.5.2</b> The <code>eigen()</code> function</a></li>
+<li class="chapter" data-level="4.5.3" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html#the-model.matrix-function"><i class="fa fa-check"></i><b>4.5.3</b> The <code>model.matrix()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="4-6-solving-ordinary-least-squares-ols.html"><a href="4-6-solving-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>4.6</b> Solving Ordinary Least Squares (OLS)</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Selection of R Programming Topics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+
+<style>
+.ssccheader {
+    height : 75px;
+}
+</style>
+
+<style>
+.bannortext {
+	float: right;
+    font-family: Sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 18px;
+}
+</style>
+
+<div class=ssccheader>
+  <img style="vertical-align:top" src="stats_logo.png" alt="Statistical Analysis and Data Science" usemap="#Map" 
+  title="Statistical Analysis and Data Science" height="75" border="0" >
+
+  <span class="bannortext">Statistical Analysis and Data Science</span>
+ </div>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div id="matrix-multiplication-operator" class="section level2">
+<h2><span class="header-section-number">4.3</span> Matrix multiplication operator</h2>
+<p>The matrix multiplication operator is <code>%*%</code>.
+The left operand, say <code>A</code> is said to be <strong>left multiplied</strong>
+to the right operand <code>B</code>.
+Similarly,
+the right operand is <strong>right multiplied</strong> to the
+left operand.
+The code for this can be written by,
+<code>A %*% B</code>.</p>
+<p>The <code>%*%</code> can operate on (atomic) vectors by
+<strong>promoting</strong> them to matrix with either one row or one column.
+These will be referred to as <strong>row vectors</strong> or
+<strong>column vectors</strong>.</p>
+<p>When left operand is a row vector and right operand
+is a column vectors,
+the operation is called the <strong>dot product</strong>.</p>
+<div id="dot-product" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> dot product</h3>
+<p>The dot product of two vectors is the sum of the
+element-wise products.
+For example, the dot product of vector <code>c</code> and <code>d</code>
+is calculated as,</p>
+<p><span class="math display">\[\sum_{i=1}^n c_i \cdot d_i.\]</span></p>
+<p>The mathematical notation for the dot product is
+<span class="math inline">\(c \cdot d\)</span>.</p>
+<p>When a (atomic) vector is used as one of the operands
+of <code>%*%</code>,
+R promotes it to a row or column matrix as needed
+for the operation.</p>
+<ol style="list-style-type: decimal">
+<li><p>Dot product using matrix multiplication</p>
+<p>Here the dot product of vectors <code>x1</code> and <code>x2</code>
+is calculated using the matrix multication.
+The <code>%*%</code> operater will promote <code>x1</code> to a
+row vector and x2 to a column vector.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">x1 <span class="op">%*%</span><span class="st"> </span>x2</a></code></pre></div>
+<pre><code>     [,1]
+[1,]    3</code></pre>
+<p>The promotion to a row or column vector can be
+done manually as is demonstated in the following
+code.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">matrix</span>(x1, <span class="dt">nrow =</span> <span class="dv">1</span>) <span class="op">%*%</span><span class="st"> </span><span class="kw">matrix</span>(x2, <span class="dt">ncol =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>     [,1]
+[1,]    3</code></pre>
+<p>The left multiplication of a column vector with a
+row vector does not result in a dot product as is
+demonstrated in the following code.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="kw">matrix</span>(x1, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">%*%</span><span class="st"> </span><span class="kw">matrix</span>(x2, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    0   -2    0   -2    0   -2
+[2,]    0   -1    0   -1    0   -1
+[3,]    0    0    0    0    0    0
+[4,]    0    1    0    1    0    1
+[5,]    0    2    0    2    0    2
+[6,]    0    3    0    3    0    3</code></pre></li>
+<li><p>Calculate the dot product using the definition</p>
+<p>The following calculates the same dot product as
+in example 1,
+using the sum of the products of the elements.
+The results are the same as in example 1.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1"><span class="kw">sum</span>(x1 <span class="op">*</span><span class="st"> </span>x2)</a></code></pre></div>
+<pre><code>[1] 3</code></pre></li>
+<li><p>Calculate the dot product using <code>crossprod()</code></p>
+<p>The following calculates the same dot product as
+in example 1,
+using the <code>crossprod()</code> function.
+The results are the same as in example 1.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">crossprod</span>(x1, x2)</a></code></pre></div>
+<pre><code>     [,1]
+[1,]    3</code></pre></li>
+</ol>
+</div>
+<div id="matrix-multiplication" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Matrix multiplication</h3>
+<p>A matrix <code>A</code><span class="math inline">\(_{[i, \,j]}\)</span> can be multiplied with a
+matrix <code>B</code><span class="math inline">\(_{[j, \,k]}\)</span>,
+if the number of columns in <code>A</code> is the same as the
+number of rows in <code>B</code>.
+The result of this multiplication is a matrix with
+dimensions of <span class="math inline">\(i \times k\)</span>.
+This is,</p>
+<p><span class="math display">\[A_{[i, \,j]} \cdot B_{[j,\, k]} \ = \ (AB)_{[i, \,k]}.\]</span></p>
+<p>Each element of <span class="math inline">\((AB)\)</span> is the dot product of a
+row from <code>A</code> with a column from <code>B</code>.</p>
+<p>Matrix multiplication is commutative.</p>
+<ol style="list-style-type: decimal">
+<li><p>Multiply <code>W</code> with <code>X</code> transpose.</p>
+<p>The transpose function, <code>t()</code>, can be used to switch
+the columns of a matrix with its rows.
+Note, this switches the dimension of the matrix as well.
+The transpose of a matrix, say <code>A</code>, is writen as <code>A'</code>.</p>
+<p>The transpose of <code>X</code> results in a matrix with two rows.
+One with <code>x1</code> and the other with <code>x2</code>.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="kw">t</span>(X)</a></code></pre></div>
+<pre><code>   [,1] [,2] [,3] [,4] [,5] [,6]
+x1   -2   -1    0    1    2    3
+x2    0    1    0    1    0    1</code></pre>
+<p>The following code left multiplies matrix <code>W</code> with the
+transpose of <code>X</code>.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">W <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X)</a></code></pre></div>
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]   -4   -5    0   -1    4    3
+[2,]    8    5    0   -3   -8  -11
+[3,]   -2    4    0    6    2    8</code></pre>
+<p>The following is the dot product of row two of
+<code>W</code> with column four of <code>X</code> transpose.
+Try other row and column values to confirm
+that each element of <code>WX'</code> is the dot
+product of the row of <code>W</code> and column of <code>X</code> transpose.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">W[<span class="dv">2</span>,] <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X)[, <span class="dv">4</span>]</a></code></pre></div>
+<pre><code>     [,1]
+[1,]   -3</code></pre></li>
+<li><p><code>X'</code> multiplied by <code>W2</code></p>
+<p>In this example the order of the matrices is switched
+from the prior example.
+This results is a different matrix.
+This shows that matrix multiplication is not commutative.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>W2</a></code></pre></div>
+<pre><code>   w1 w2
+x1 -3 19
+x2 -1  3</code></pre></li>
+</ol>
+</div>
+<div id="outer-product" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Outer product</h3>
+<p>When the left operand is a column vector and the right
+operand is a row vector,
+matrix multiplication is the <strong>outer product</strong>.</p>
+<ol style="list-style-type: decimal">
+<li><p>The outer product of <code>x2</code> and <code>x1</code>.</p>
+<p>This example reverses the order of the matrices from
+example 1 of the dot product section.
+This is another example of matrix multiplication not
+being commutative.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1"><span class="kw">matrix</span>(x2, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">%*%</span><span class="st"> </span><span class="kw">matrix</span>(x1, <span class="dt">nrow =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    0    0    0    0    0    0
+[2,]   -2   -1    0    1    2    3
+[3,]    0    0    0    0    0    0
+[4,]   -2   -1    0    1    2    3
+[5,]    0    0    0    0    0    0
+[6,]   -2   -1    0    1    2    3</code></pre></li>
+<li><p>Calculate the prior example using <code>outer()</code>.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1"><span class="kw">outer</span>(x2, x1)</a></code></pre></div>
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    0    0    0    0    0    0
+[2,]   -2   -1    0    1    2    3
+[3,]    0    0    0    0    0    0
+[4,]   -2   -1    0    1    2    3
+[5,]    0    0    0    0    0    0
+[6,]   -2   -1    0    1    2    3</code></pre></li>
+</ol>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-2-element-wise-operations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-4-matrix-inversion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

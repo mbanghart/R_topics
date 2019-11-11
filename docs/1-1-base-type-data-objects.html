@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.1 Base type data objects | A Selection of R Programming Topics</title>
+  <meta name="description" content="This book is a collection of selected topics on writing R code." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.1 Base type data objects | A Selection of R Programming Topics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book is a collection of selected topics on writing R code." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.1 Base type data objects | A Selection of R Programming Topics" />
+  
+  <meta name="twitter:description" content="This book is a collection of selected topics on writing R code." />
+  
+
+<meta name="author" content="Mark Banghart" />
+
+
+<meta name="date" content="2019-11-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-data-objects.html"/>
+<link rel="next" href="1-2-object-classes.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./preface.html">Selected R Programming Topics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-data-objects.html"><a href="1-data-objects.html"><i class="fa fa-check"></i><b>1</b> Data objects</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html"><i class="fa fa-check"></i><b>1.1</b> Base type data objects</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#integers-real-numbers-character-strings-and-logical"><i class="fa fa-check"></i><b>1.1.1</b> Integers, real numbers, character strings, and logical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#lists"><i class="fa fa-check"></i><b>1.1.2</b> Lists</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#properties-and-attributes"><i class="fa fa-check"></i><b>1.1.3</b> Properties and attributes</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#summary-tl-dr"><i class="fa fa-check"></i><b>1.1.4</b> Summary (TL; DR)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html"><i class="fa fa-check"></i><b>1.2</b> Object classes</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#factors"><i class="fa fa-check"></i><b>1.2.1</b> Factors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#data.frames"><i class="fa fa-check"></i><b>1.2.2</b> data.frames</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#matrices"><i class="fa fa-check"></i><b>1.2.3</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#summary-tl-dr-1"><i class="fa fa-check"></i><b>1.2.4</b> Summary (TL; DR)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-functions.html"><a href="2-functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a></li>
+<li class="chapter" data-level="3" data-path="3-parallel-data-processing.html"><a href="3-parallel-data-processing.html"><i class="fa fa-check"></i><b>3</b> Parallel data processing</a></li>
+<li class="chapter" data-level="4" data-path="4-matrices-1.html"><a href="4-matrices-1.html"><i class="fa fa-check"></i><b>4</b> Matrices</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-scalar-operations.html"><a href="4-1-scalar-operations.html"><i class="fa fa-check"></i><b>4.1</b> Scalar operations</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-element-wise-operations.html"><a href="4-2-element-wise-operations.html"><i class="fa fa-check"></i><b>4.2</b> Element-wise operations</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html"><i class="fa fa-check"></i><b>4.3</b> Matrix multiplication operator</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html#dot-product"><i class="fa fa-check"></i><b>4.3.1</b> dot product</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html#matrix-multiplication"><i class="fa fa-check"></i><b>4.3.2</b> Matrix multiplication</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html#outer-product"><i class="fa fa-check"></i><b>4.3.3</b> Outer product</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-matrix-inversion.html"><a href="4-4-matrix-inversion.html"><i class="fa fa-check"></i><b>4.4</b> Matrix inversion</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html"><i class="fa fa-check"></i><b>4.5</b> Other Matrix operations</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html#the-diag-function"><i class="fa fa-check"></i><b>4.5.1</b> The <code>diag()</code> function</a></li>
+<li class="chapter" data-level="4.5.2" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html#the-eigen-function"><i class="fa fa-check"></i><b>4.5.2</b> The <code>eigen()</code> function</a></li>
+<li class="chapter" data-level="4.5.3" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html#the-model.matrix-function"><i class="fa fa-check"></i><b>4.5.3</b> The <code>model.matrix()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="4-6-solving-ordinary-least-squares-ols.html"><a href="4-6-solving-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>4.6</b> Solving Ordinary Least Squares (OLS)</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Selection of R Programming Topics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+
+<style>
+.ssccheader {
+    height : 75px;
+}
+</style>
+
+<style>
+.bannortext {
+	float: right;
+    font-family: Sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 18px;
+}
+</style>
+
+<div class=ssccheader>
+  <img style="vertical-align:top" src="stats_logo.png" alt="Statistical Analysis and Data Science" usemap="#Map" 
+  title="Statistical Analysis and Data Science" height="75" border="0" >
+
+  <span class="bannortext">Statistical Analysis and Data Science</span>
+ </div>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div id="base-type-data-objects" class="section level2">
+<h2><span class="header-section-number">1.1</span> Base type data objects</h2>
+<div id="integers-real-numbers-character-strings-and-logical" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Integers, real numbers, character strings, and logical</h3>
+<p>A <strong>datum</strong> is a single value.
+An integer, real number, character string, and
+logical value are examples of a datum.
+This type of data is called <strong>atomic</strong>.</p>
+<p>Atomic datum are stored in vectors,
+<strong>atomic vectors</strong> specifically.
+The positions within an atomic vector where an
+atomic datum is stored are called <strong>elements</strong>.
+The <strong>elements</strong> of a vector are organized serially,
+one after another.
+The elements have a position in this serial structure
+and the structure has a length.
+Since there is no branching in the serial structure,
+an atomic vector is a one dimensional structure.</p>
+<p>Atomic vectors contain data of a single <strong>type</strong>.
+The <code>type</code> of an atomic vectors is the type of the
+data it holds.
+The four most common <code>types</code> are
+<code>integer</code>, <code>double</code>, <code>character</code>, and <code>logical</code>.
+(Note, real numbers have a <code>type</code> of <code>double</code>.)
+There are two other <code>types</code> of atomic vectors,
+<code>complex</code> and <code>raw</code>.
+These two <code>types</code> will not be covered here.</p>
+<p>A few useful functions</p>
+<ul>
+<li><p><code>c()</code> constructs an atomic vector.
+The <code>type</code> of the vector is determined by the
+data provided.</p>
+<p>If the data provided to <code>c()</code> are of different <code>types</code>,
+R will <strong>coerce</strong>,
+change the type for you,
+to the most flexible <code>type</code> in the data.
+The coercion order is
+<code>logical</code> to <code>integer</code> to <code>double</code> to <code>character</code>.</p>
+<p>There are constructors for vectors of each
+type, <code>logical()</code>, <code>integer()</code>, <code>double()</code>,
+<code>numeric()</code>, <code>vector()</code>.
+(Note, <code>numeric()</code> creates an atomic vector of
+<code>type</code> <code>double</code>.)
+These constructors create an atomic vector of a given
+length.
+The values for the elements will be <code>FALSE</code> for <code>logical</code>,
+0 for <code>integer</code> and <code>double</code>, and "" for <code>character</code>
+<code>types</code>.</p></li>
+<li><p><code>typeof()</code> returns the type of the data that is
+stored in an atomic vector.</p></li>
+<li><p><code>is.atomic()</code> returns <code>TRUE</code> if the object is an
+atomic vector,
+otherwise <code>FALSE</code>.</p></li>
+<li><p><code>is.vector()</code> returns <code>TRUE</code> if the data object
+is a vector.
+(This will be expanded on in the matrices section.
+This definition works for now.)</p></li>
+</ul>
+<div id="examples" class="section level4">
+<h4><span class="header-section-number">1.1.1.1</span> Examples</h4>
+<ol style="list-style-type: decimal">
+<li><p>Creating atomic vectors</p>
+<p>The following is an <code>integer</code> vector.
+The <code>L</code> after the integer indicates that the
+value is an integer.
+Without the <code>L</code>, the values are stored as
+<code>double</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">vec1 &lt;-<span class="st"> </span><span class="kw">c</span>(7L, 5L, 3L, 1L)</a>
+<a class="sourceLine" id="cb1-2" title="2">vec1</a></code></pre></div>
+<pre><code>[1] 7 5 3 1</code></pre>
+<p>The following is a vector of type <code>double</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">vec2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2">vec2</a></code></pre></div>
+<pre><code>[1] 1 2 4 8</code></pre>
+<p>The following is a <code>character</code> vector.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">vec3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2">vec3</a></code></pre></div>
+<pre><code>[1] &quot;A&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot;</code></pre>
+<p>The following is a <code>logical</code> vector.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">vec4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2">vec4</a></code></pre></div>
+<pre><code>[1]  TRUE FALSE FALSE  TRUE</code></pre></li>
+<li><p>Coercion of type when creating atomic vectors</p>
+<p>The following includes <code>logical</code>, <code>integer</code>, and
+<code>double</code> values.
+The <code>logical</code> and <code>integer</code> values are coerced
+to <code>double</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">vecA &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, 1L, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb9-2" title="2">vecA</a></code></pre></div>
+<pre><code>[1] 1 1 2</code></pre>
+<p>The following includes <code>double</code> and
+<code>character</code> values.
+The <code>double</code> value is coerced
+to <code>character</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">vecB &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">3.5</span>, <span class="st">&quot;4.6&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2">vecB</a></code></pre></div>
+<pre><code>[1] &quot;3.5&quot; &quot;4.6&quot;</code></pre></li>
+<li><p><code>typeof()</code> atomic vectors</p>
+<p>The following displays the <code>types</code> of the vectors
+created in the prior examples.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">c</span>(<span class="dt">vec1 =</span> <span class="kw">typeof</span>(vec1), <span class="dt">vec2 =</span> <span class="kw">typeof</span>(vec2), <span class="dt">vec3 =</span> <span class="kw">typeof</span>(vec3),</a>
+<a class="sourceLine" id="cb13-2" title="2">  <span class="dt">vec4 =</span> <span class="kw">typeof</span>(vec4), <span class="dt">vecA =</span> <span class="kw">typeof</span>(vecA), <span class="dt">vecB =</span> <span class="kw">typeof</span>(vecB)</a>
+<a class="sourceLine" id="cb13-3" title="3">  )</a></code></pre></div>
+<pre><code>       vec1        vec2        vec3        vec4        vecA        vecB 
+  &quot;integer&quot;    &quot;double&quot; &quot;character&quot;   &quot;logical&quot;    &quot;double&quot; &quot;character&quot; </code></pre></li>
+<li><p><code>is.atomic()</code> to test if a vector is atomic</p>
+<p>The following shows that all of the vectors
+created in the prior examples are atomic.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">c</span>(<span class="dt">vec1 =</span> <span class="kw">is.atomic</span>(vec1), <span class="dt">vec2 =</span> <span class="kw">is.atomic</span>(vec2), <span class="dt">vec3 =</span> <span class="kw">is.atomic</span>(vec3),</a>
+<a class="sourceLine" id="cb15-2" title="2">  <span class="dt">vec4 =</span> <span class="kw">is.atomic</span>(vec4), <span class="dt">vecA =</span> <span class="kw">is.atomic</span>(vecA), <span class="dt">vecB =</span> <span class="kw">is.atomic</span>(vecB)</a>
+<a class="sourceLine" id="cb15-3" title="3">  )</a></code></pre></div>
+<pre><code>vec1 vec2 vec3 vec4 vecA vecB 
+TRUE TRUE TRUE TRUE TRUE TRUE </code></pre></li>
+<li><p>A single datum is stored in vectors.</p>
+<p>All atomic datum are stored in a vector.
+Even one individual value, called a <strong>scalar</strong>,
+is stored in a vector.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">is.vector</span>(<span class="dv">9</span>)</a></code></pre></div>
+<pre><code>[1] TRUE</code></pre></li>
+</ol>
+</div>
+</div>
+<div id="lists" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> Lists</h3>
+<p><strong>Lists</strong> store elements sequentially
+Thus, like atomic vectors are ordered single dimensional structures.
+They differ from atomic vectors in that the elements are other object,
+and not atomic data.
+The elements are typically atomic vectors or another list.
+Elements can also be any other R object,
+including non-data objects such as a function.
+List elements are not required to all be of the
+same object type.
+That is one element could be an atomic vector and
+another element could be another list.</p>
+<p>The <code>type</code> of a list is <code>list</code>.
+A list is a vector,
+just non-atomic.</p>
+<p>The constructor for a <code>list</code> is <code>list()</code>.</p>
+<div id="examples-1" class="section level4">
+<h4><span class="header-section-number">1.1.2.1</span> Examples</h4>
+<ol style="list-style-type: decimal">
+<li><p>Creating a list</p>
+<p>The following code creates a list with
+three elements.
+The first element is a character atomic vector of length one.
+The second element is <code>vec1</code>,
+an atomic vector from the prior examples,
+and the third vector is another list.
+The list in the third element contains two elements,
+each of which is an atomic vector.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">list1 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;element_1&quot;</span>, vec1, <span class="kw">list</span>(<span class="dv">9</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb19-2" title="2">list1</a></code></pre></div>
+<pre><code>[[1]]
+[1] &quot;element_1&quot;
+
+[[2]]
+[1] 7 5 3 1
+
+[[3]]
+[[3]][[1]]
+[1] 9
+
+[[3]][[2]]
+[1] 0</code></pre>
+<p>Note, the elements of a list are identifyed using
+two sets of square brackets, <code>[[ ]]</code>.</p></li>
+<li><p><code>typeof()</code> list</p>
+<p>The following displays the type of <code>list1</code> is <code>list</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">typeof</span>(list1)</a></code></pre></div>
+<pre><code>[1] &quot;list&quot;</code></pre></li>
+<li><p>A list is still a vector</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">is.vector</span>(list1)</a></code></pre></div>
+<pre><code>[1] TRUE</code></pre></li>
+<li><p>A list is not atomic</p>
+<p>Although the elements of a list may store atomic values.
+The list itself is not atomic.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">is.atomic</span>(list1)</a></code></pre></div>
+<pre><code>[1] FALSE</code></pre></li>
+</ol>
+</div>
+</div>
+<div id="properties-and-attributes" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Properties and attributes</h3>
+<p><strong>Properties</strong> are information about what is stored
+in a data object.
+They describe aspects of how the data is formatted and
+stored.
+Properties are <strong>metadata</strong>,
+data about the data.
+An example is, <code>Type</code>.
+A property that tells R how to interpret the
+data in the elements.</p>
+<p>Properties are set and controlled at a low level in R.
+A programmer does not directly set a property.
+Properties can be read using functions like <code>typeof()</code>
+and <code>is.atomic()</code>.</p>
+<p>An <strong>attribute</strong> is also data about the data.
+Attributes describe other meanings that the data
+may have.
+For example,
+A character vector may have an element that represents a person's
+name and another element that has their address.
+This information could be stored in an attribute.</p>
+<p>Users can define and change attributes.
+Base R defines some attributes for data objects,
+such as <code>matrix</code> and <code>data.frame</code> objects
+(which are covered in the next section.)</p>
+<p>A few useful functions</p>
+<ul>
+<li><p><code>length()</code> returns the number of elements in
+an atomic vector or <code>list</code>.</p></li>
+<li><p><code>names()</code> gets or sets the names of elements of
+an atomic vector or <code>list</code>.
+Names of elements are an attribute of the vector.</p></li>
+<li><p><code>attr()</code> gets or sets a single attribute.</p></li>
+<li><p><code>attributes()</code> gets all attributes of a
+data object.</p></li>
+</ul>
+<div id="examples-2" class="section level4">
+<h4><span class="header-section-number">1.1.3.1</span> Examples</h4>
+<ol style="list-style-type: decimal">
+<li><p>Naming elements</p>
+<p>We will use <code>names()</code> to give names to the four values
+stored in the elements of atomic vector <code>vec1</code>.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">names</span>(vec1) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;first&quot;</span>, <span class="st">&quot;second&quot;</span>, <span class="st">&quot;third&quot;</span>, <span class="st">&quot;fourth&quot;</span>)</a>
+<a class="sourceLine" id="cb27-2" title="2">vec1</a></code></pre></div>
+<pre><code> first second  third fourth 
+     7      5      3      1 </code></pre>
+<p>names can also be given when the atomic vector or list is
+created.
+This is done by useing the name of an element as the parameter
+for the element</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">rec_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">name =</span> <span class="st">&quot;Bucky&quot;</span>, <span class="dt">address =</span> <span class="st">&quot;UW Madison&quot;</span>, <span class="dt">occupation =</span> <span class="st">&quot;Mascot&quot;</span>)</a>
+<a class="sourceLine" id="cb29-2" title="2">rec_vec</a></code></pre></div>
+<pre><code>        name      address   occupation 
+     &quot;Bucky&quot; &quot;UW Madison&quot;     &quot;Mascot&quot; </code></pre>
+<p>Similarly for lists.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">rec_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">name =</span> <span class="st">&quot;Bucky&quot;</span>, <span class="dt">address =</span> <span class="st">&quot;UW Madison&quot;</span>, <span class="dt">occupation =</span> <span class="st">&quot;Mascot&quot;</span>)</a>
+<a class="sourceLine" id="cb31-2" title="2">rec_list</a></code></pre></div>
+<pre><code>$name
+[1] &quot;Bucky&quot;
+
+$address
+[1] &quot;UW Madison&quot;
+
+$occupation
+[1] &quot;Mascot&quot;</code></pre></li>
+<li><p><code>length()</code> of vectors</p>
+<p>The following displays the <code>length</code> of several of the vectors
+created in the prior examples.
+The lengths of the object are displayed using a named
+<code>integer</code> vector.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">c</span>(<span class="dt">vec1 =</span> <span class="kw">length</span>(vec1), <span class="dt">list1 =</span> <span class="kw">length</span>(list1),</a>
+<a class="sourceLine" id="cb33-2" title="2">  <span class="dt">rec_list =</span> <span class="kw">length</span>(rec_list)</a>
+<a class="sourceLine" id="cb33-3" title="3">  )</a></code></pre></div>
+<pre><code>    vec1    list1 rec_list 
+       4        3        3 </code></pre>
+<p>The length of the <code>rec_list</code> is the count of it's elements.
+This does not include a count of any elements of objects
+stored in its elements.</p></li>
+<li><p>Getting attributes</p>
+<p>The following code displays the attributes of the
+<code>rec_list</code> list.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">attributes</span>(rec_vec)</a></code></pre></div>
+<pre><code>$names
+[1] &quot;name&quot;       &quot;address&quot;    &quot;occupation&quot;</code></pre>
+<p>The following code displays the <code>names</code> attributes of the
+<code>rec_list</code> list.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">attr</span>(rec_vec, <span class="dt">which =</span> <span class="st">&quot;names&quot;</span>)</a></code></pre></div>
+<pre><code>[1] &quot;name&quot;       &quot;address&quot;    &quot;occupation&quot;</code></pre>
+<p>The following displays the attributes of <code>vec3</code>.
+Note, there are no attributes for this atomic vector.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">attributes</span>(vec3)</a></code></pre></div>
+<pre><code>NULL</code></pre></li>
+</ol>
+</div>
+</div>
+<div id="summary-tl-dr" class="section level3">
+<h3><span class="header-section-number">1.1.4</span> Summary (TL; DR)</h3>
+<ul>
+<li><p>Vectors are data objects that store elements serially
+and are ordered one dimensionally structures.
+They have a <code>type</code> and <code>length</code>.</p></li>
+<li><p>Atomic indicates if data elements are <code>integer</code>, <code>double</code>,
+<code>logical</code>, or <code>character</code>.</p></li>
+<li><p>Lists are vectors where each element is an object.</p></li>
+<li><p>Elements of vectors can be given <code>names</code>.</p></li>
+<li><p>Properties of objects are controlled by R.
+There are functions that allow the properties to be
+viewed.</p></li>
+<li><p>Attributes are similar to properties.
+They can be set by the user.</p></li>
+</ul>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-data-objects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-2-object-classes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

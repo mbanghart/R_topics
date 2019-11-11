@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Data objects | A Selection of R Programming Topics</title>
+  <meta name="description" content="This book is a collection of selected topics on writing R code." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Data objects | A Selection of R Programming Topics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book is a collection of selected topics on writing R code." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Data objects | A Selection of R Programming Topics" />
+  
+  <meta name="twitter:description" content="This book is a collection of selected topics on writing R code." />
+  
+
+<meta name="author" content="Mark Banghart" />
+
+
+<meta name="date" content="2019-11-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="preface.html"/>
+<link rel="next" href="1-1-base-type-data-objects.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./preface.html">Selected R Programming Topics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="1-data-objects.html"><a href="1-data-objects.html"><i class="fa fa-check"></i><b>1</b> Data objects</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html"><i class="fa fa-check"></i><b>1.1</b> Base type data objects</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#integers-real-numbers-character-strings-and-logical"><i class="fa fa-check"></i><b>1.1.1</b> Integers, real numbers, character strings, and logical</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#lists"><i class="fa fa-check"></i><b>1.1.2</b> Lists</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#properties-and-attributes"><i class="fa fa-check"></i><b>1.1.3</b> Properties and attributes</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-base-type-data-objects.html"><a href="1-1-base-type-data-objects.html#summary-tl-dr"><i class="fa fa-check"></i><b>1.1.4</b> Summary (TL; DR)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html"><i class="fa fa-check"></i><b>1.2</b> Object classes</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#factors"><i class="fa fa-check"></i><b>1.2.1</b> Factors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#data.frames"><i class="fa fa-check"></i><b>1.2.2</b> data.frames</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#matrices"><i class="fa fa-check"></i><b>1.2.3</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-2-object-classes.html"><a href="1-2-object-classes.html#summary-tl-dr-1"><i class="fa fa-check"></i><b>1.2.4</b> Summary (TL; DR)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-functions.html"><a href="2-functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a></li>
+<li class="chapter" data-level="3" data-path="3-parallel-data-processing.html"><a href="3-parallel-data-processing.html"><i class="fa fa-check"></i><b>3</b> Parallel data processing</a></li>
+<li class="chapter" data-level="4" data-path="4-matrices-1.html"><a href="4-matrices-1.html"><i class="fa fa-check"></i><b>4</b> Matrices</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-scalar-operations.html"><a href="4-1-scalar-operations.html"><i class="fa fa-check"></i><b>4.1</b> Scalar operations</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-element-wise-operations.html"><a href="4-2-element-wise-operations.html"><i class="fa fa-check"></i><b>4.2</b> Element-wise operations</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html"><i class="fa fa-check"></i><b>4.3</b> Matrix multiplication operator</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html#dot-product"><i class="fa fa-check"></i><b>4.3.1</b> dot product</a></li>
+<li class="chapter" data-level="4.3.2" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html#matrix-multiplication"><i class="fa fa-check"></i><b>4.3.2</b> Matrix multiplication</a></li>
+<li class="chapter" data-level="4.3.3" data-path="4-3-matrix-multiplication-operator.html"><a href="4-3-matrix-multiplication-operator.html#outer-product"><i class="fa fa-check"></i><b>4.3.3</b> Outer product</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-matrix-inversion.html"><a href="4-4-matrix-inversion.html"><i class="fa fa-check"></i><b>4.4</b> Matrix inversion</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html"><i class="fa fa-check"></i><b>4.5</b> Other Matrix operations</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html#the-diag-function"><i class="fa fa-check"></i><b>4.5.1</b> The <code>diag()</code> function</a></li>
+<li class="chapter" data-level="4.5.2" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html#the-eigen-function"><i class="fa fa-check"></i><b>4.5.2</b> The <code>eigen()</code> function</a></li>
+<li class="chapter" data-level="4.5.3" data-path="4-5-other-matrix-operations.html"><a href="4-5-other-matrix-operations.html#the-model.matrix-function"><i class="fa fa-check"></i><b>4.5.3</b> The <code>model.matrix()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="4-6-solving-ordinary-least-squares-ols.html"><a href="4-6-solving-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>4.6</b> Solving Ordinary Least Squares (OLS)</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Selection of R Programming Topics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+
+<style>
+.ssccheader {
+    height : 75px;
+}
+</style>
+
+<style>
+.bannortext {
+	float: right;
+    font-family: Sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 18px;
+}
+</style>
+
+<div class=ssccheader>
+  <img style="vertical-align:top" src="stats_logo.png" alt="Statistical Analysis and Data Science" usemap="#Map" 
+  title="Statistical Analysis and Data Science" height="75" border="0" >
+
+  <span class="bannortext">Statistical Analysis and Data Science</span>
+ </div>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div id="data-objects" class="section level1">
+<h1><span class="header-section-number">1</span> Data objects</h1>
+<p>This chapter covers the commonly used data objects and
+their properties.</p>
+<p>This chapter is not complete.</p> 
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="preface.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-1-base-type-data-objects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
